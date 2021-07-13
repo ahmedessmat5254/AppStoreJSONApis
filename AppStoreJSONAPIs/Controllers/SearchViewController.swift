@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -16,7 +16,23 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         
         collectionView.backgroundColor = .white
         
-        collectionView.register(CellResult.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(CellResultCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        
+        fetchItunesApps()
+    }
+    
+    var appResults = [Result]()
+    
+    func fetchItunesApps() {
+        Service.shared.fetchAppp { results, error in
+            if let error = error {
+                print("Faild to fetch apps:", error)
+            }
+            self.appResults = results
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         
     }
     
@@ -25,11 +41,11 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return appResults.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        cell.backgroundColor = .white
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)as! CellResultCell
+        cell.appResult = appResults[indexPath.row]
         return cell
     }
     

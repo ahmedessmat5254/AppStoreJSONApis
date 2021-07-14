@@ -11,8 +11,8 @@ import Foundation
 class Service  {
     static let shared = Service()
     
-    func fetchAppp(completion: @escaping ([Result], Error?)-> ()) {
-        let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
+    func fetchAppp(text: String ,completion: @escaping ([Result], Error?)-> ()) {
+        let urlString = "https://itunes.apple.com/search?term=\(text)&entity=software"
         guard let url = URL(string: urlString) else {return}
         
         //Fetch data from internet

@@ -10,7 +10,7 @@ import UIKit
 class CellResultCell: UICollectionViewCell {
     
     var appResult: Result! {
-        didSet { 
+        didSet {
             nameLable.text = appResult.trackName
             categoryLable.text = appResult.primaryGenreName
             ranksLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
@@ -29,7 +29,6 @@ class CellResultCell: UICollectionViewCell {
     }
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.systemBlue
         iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
         iv.layer.cornerRadius = 12
@@ -72,7 +71,6 @@ class CellResultCell: UICollectionViewCell {
     
     func createImageScreenShot() -> UIImageView {
         let imageView = UIImageView()
-        imageView.backgroundColor = .white
         imageView.layer.borderWidth = 0.5
         imageView.layer.cornerRadius = 8
         imageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor

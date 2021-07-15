@@ -7,4 +7,14 @@
 
 import UIKit
 
-
+//extension UIView {
+//    @discardableResult
+//    func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor, trailing:NSLayoutXAxisAnchor, bottom: NSLayoutYAxisAnchor) {
+//        
+//    }
+//    
+//}
+//
+//struct AnchorConstraint {
+//    
+//}

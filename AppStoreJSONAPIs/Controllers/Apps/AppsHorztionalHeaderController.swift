@@ -1,37 +1,39 @@
 //
-//  Apps.swift
+//  AppsHorztionalHeaderController.swift
 //  AppStoreJSONAPIs
 //
-//  Created by Ahmed Essmat on 14/07/2021.
+//  Created by Ahmed Essmat on 16/07/2021.
 //
 
 import UIKit
 
-class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
-    
-    fileprivate let cellId = "id"
+class AppsHorziontalHeaderController: BaseListController {
+    let cellId = "id"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         collectionView.backgroundColor = .white
-        collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
-
+        collectionView.register(AppsHeaderCell.self, forCellWithReuseIdentifier: cellId)
+        
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 3
+    }
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId
+                                                      , for: indexPath)
+        return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        return  cell
-    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width
-              , height: 300)
+        .init(width: view.frame.width - 48, height: view.frame.height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        .init(top: 16, left: 0, bottom: 0, right: 0)
+        .init(top: 0, left: 16, bottom: 0, right: 0)
     }
 }

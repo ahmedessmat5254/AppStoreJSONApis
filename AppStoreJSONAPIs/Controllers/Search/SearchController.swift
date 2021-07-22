@@ -10,7 +10,7 @@ import SDWebImage
 
 class SearchController: BaseListController, UISearchBarDelegate {
     
-    fileprivate let cellIdentifier = "cell123"
+     let cellIdentifier = "cell123"
     
     fileprivate var searchController = UISearchController(searchResultsController: nil)
     

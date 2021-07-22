@@ -32,4 +32,33 @@ class Service  {
         }
         task.resume()
     }
+    
+    
+    func fetchGame(completion: @escaping (AppGroup?, Error?)->()) {
+//        "https://rss.itunes.apple.com/api/v1/eg/ios-apps/new-games-we-love/all/50/explicit.json"
+        let urlString = "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json"
+        guard let url = URL(string: urlString) else {
+            print("Invaild URL Please Try Again")
+            return
+        }
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("faild to fetch data:", error)
+                completion(nil,error)
+            }
+            
+            guard let data = data else { return }
+            do {
+               let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
+                appGroup.feed.results.forEach { print($0.name) }
+                completion(appGroup, nil)
+            }catch {
+                print("Failed to decode data.Please try again")
+                completion(nil, error)
+            }
+            
+        }
+        dataTask.resume()
+    }
 }

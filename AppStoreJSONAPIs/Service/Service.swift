@@ -34,9 +34,18 @@ class Service  {
     }
     
     
-    func fetchGame(completion: @escaping (AppGroup?, Error?)->()) {
-//        "https://rss.itunes.apple.com/api/v1/eg/ios-apps/new-games-we-love/all/50/explicit.json"
-        let urlString = "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json"
+    func fetchNewApp(completion: @escaping (AppGroup?, Error?)->()) {
+        let urlString = "https://rss.itunes.apple.com/api/v1/eg/ios-apps/new-apps-we-love/all/50/explicit.json"
+        fetchGroups(urlString: urlString, completion: completion)
+    }
+    
+    func fetchNewGame(complection: @escaping (AppGroup?, Error?) ->()){
+        let urlString = "https://rss.itunes.apple.com/api/v1/eg/ios-apps/new-games-we-love/all/50/explicit.json"
+        fetchGroups(urlString: urlString, completion: complection)
+    }
+    
+    
+    func fetchGroups(urlString:String, completion: @escaping (AppGroup?, Error?) -> ()) {
         guard let url = URL(string: urlString) else {
             print("Invaild URL Please Try Again")
             return

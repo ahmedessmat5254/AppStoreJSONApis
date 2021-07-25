@@ -23,19 +23,55 @@ class AppsPageController: BaseListController {
         fetchData()
     }
     
-    var gamesWeLove: AppGroup?
+//    var gamesWeLove: AppGroup?
+    var groups = [AppGroup]()
+    var dispatchGroup = DispatchGroup()
+    
+    var group1: AppGroup?
+    var group2: AppGroup?
+    var group3: AppGroup?
+    
     func fetchData() {
-        print("Fetch DATA from JSON Model")
-        Service.shared.fetchGame { appGroup, error in
-            if let error = error  {
-                print("Faild to fecthed data", error)
-            }
-            self.gamesWeLove = appGroup
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+        
+        self.dispatchGroup.enter()
+        Service.shared.fetchGroups(urlString: "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json") { appGroup, error in
+            self.dispatchGroup.leave()
+            guard let group = appGroup else { return }
+            self.group1 = group
         }
+        
+        self.dispatchGroup.enter()
+        Service.shared.fetchNewApp { appGroup, error in
+            self.dispatchGroup.leave()
+            guard let group = appGroup else { return}
+            self.group2 = group
+           
+        }
+        
+        self.dispatchGroup.enter()
+        Service.shared.fetchNewGame { appGroup, error in
+            self.dispatchGroup.leave()
+            guard let group = appGroup else {return}
+            self.group3 = group
+        }
+        
+    
+        dispatchGroup.notify(queue: .main){
+            print("I am group")
+            if let group = self.group1 {
+                self.groups.append(group)
+            }
+            if let group = self.group2 {
+                self.groups.append(group)
+            }
+            if let group = self.group3 {
+                self.groups.append(group)
+            }
+            self.collectionView.reloadData()
+        }
+        
+        
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -48,13 +84,14 @@ class AppsPageController: BaseListController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return groups.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
-        cell.titelLabel.text = gamesWeLove?.feed.title
-        cell.horizontalController.appGroup = gamesWeLove
+        let group = groups[indexPath.row]
+        cell.titelLabel.text = group.feed.title
+        cell.horizontalController.appGroup = group
         cell.horizontalController.collectionView.reloadData()
         return  cell
     }

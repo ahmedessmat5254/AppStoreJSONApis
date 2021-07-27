@@ -12,6 +12,12 @@ class AppsPageController: BaseListController {
     let cellId = "id"
     let headerId = "headerId"
     
+    let activityIndictor: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .large)
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +25,15 @@ class AppsPageController: BaseListController {
         collectionView.backgroundColor = .white
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        
+        view.addSubview(activityIndictor)
+        activityIndictor.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndictor.topAnchor.constraint(equalTo: view.topAnchor),
+            activityIndictor.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            activityIndictor.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            activityIndictor.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
         
         fetchData()
     }
@@ -30,6 +45,8 @@ class AppsPageController: BaseListController {
     var group1: AppGroup?
     var group2: AppGroup?
     var group3: AppGroup?
+    
+    var socialApps = [SocialApp]()
     
     func fetchData() {
         
@@ -54,10 +71,17 @@ class AppsPageController: BaseListController {
             guard let group = appGroup else {return}
             self.group3 = group
         }
-        
+        self.dispatchGroup.enter()
+        Service.shared.fetchSoicalApp { socialApp, error in
+            self.dispatchGroup.leave()
+            //error if condication
+            guard let app = socialApp else { return }
+            self.socialApps = app
+            print("Social Apps", self.socialApps)
+        }
     
         dispatchGroup.notify(queue: .main){
-            print("I am group")
+            self.activityIndictor.stopAnimating()
             if let group = self.group1 {
                 self.groups.append(group)
             }
@@ -75,7 +99,9 @@ class AppsPageController: BaseListController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! AppsPageHeader
+        header.appsHeaderHorizontal.socialApps = socialApps
+        header.appsHeaderHorizontal.collectionView.reloadData()
         return header
     }
     
@@ -89,7 +115,7 @@ class AppsPageController: BaseListController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
-        let group = groups[indexPath.row]
+        let group = groups[indexPath.item]
         cell.titelLabel.text = group.feed.title
         cell.horizontalController.appGroup = group
         cell.horizontalController.collectionView.reloadData()

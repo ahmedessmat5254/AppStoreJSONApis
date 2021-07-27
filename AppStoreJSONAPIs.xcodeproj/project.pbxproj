@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE347FD926B01AB100102D2B /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE347FD826B01AB100102D2B /* SocialApp.swift */; };
 		BE38D019269ED4D0002ACFD2 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D018269ED4D0002ACFD2 /* UIView+Ext.swift */; };
 		BE38D01E269F17A1002ACFD2 /* AppsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D01D269F17A1002ACFD2 /* AppsPageController.swift */; };
 		BE38D020269F1AE9002ACFD2 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D01F269F1AE9002ACFD2 /* BaseListController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		517C403516A41C3A31EA1F5D /* Pods-AppStoreJSONAPIs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSONAPIs.release.xcconfig"; path = "Target Support Files/Pods-AppStoreJSONAPIs/Pods-AppStoreJSONAPIs.release.xcconfig"; sourceTree = "<group>"; };
 		622696DEC5F11A399561FD36 /* Pods_AppStoreJSONAPIs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreJSONAPIs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE347FD826B01AB100102D2B /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
 		BE38D018269ED4D0002ACFD2 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		BE38D01D269F17A1002ACFD2 /* AppsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageController.swift; sourceTree = "<group>"; };
 		BE38D01F269F1AE9002ACFD2 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				BE7A5A3A269761C300F71A78 /* SearchResult.swift */,
 				BEF2EA7926A9807E0078948D /* AppGroup.swift */,
+				BE347FD826B01AB100102D2B /* SocialApp.swift */,
 			);
 			path = "Model ";
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE434F6C269520D6008136B2 /* SearchController.swift in Sources */,
+				BE347FD926B01AB100102D2B /* SocialApp.swift in Sources */,
 				BE38D019269ED4D0002ACFD2 /* UIView+Ext.swift in Sources */,
 				BE43ABC32694BE06005F0F43 /* BaseTabBarController.swift in Sources */,
 				BE7A5A3B269761C300F71A78 /* SearchResult.swift in Sources */,

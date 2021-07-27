@@ -58,8 +58,8 @@ class SearchController: BaseListController, UISearchBarDelegate {
         
         timer?.invalidate()
         timer  = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            Service.shared.fetchAppp(text: searchText) { result, error in
-                self.appResults = result
+            Service.shared.fetchAppp(text: searchText) { res, error in
+                self.appResults = res?.results ?? []
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                   }
@@ -70,11 +70,11 @@ class SearchController: BaseListController, UISearchBarDelegate {
     }
     
     func fetchItunesApps() {
-        Service.shared.fetchAppp(text: "Twitter") { results, error in
+        Service.shared.fetchAppp(text: "Twitter") { res, error in
             if let error = error {
                 print("Faild to fetch apps:", error)
             }
-            self.appResults = results
+            self.appResults = res?.results ?? []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }

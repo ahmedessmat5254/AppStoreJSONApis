@@ -16,7 +16,6 @@ class AppsHeaderCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageView.backgroundColor = .red
         
         titleLabel.numberOfLines = 2
         companyName.textColor = .blue
@@ -30,6 +29,7 @@ class AppsHeaderCell: UICollectionViewCell {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            
         ])
     }
     

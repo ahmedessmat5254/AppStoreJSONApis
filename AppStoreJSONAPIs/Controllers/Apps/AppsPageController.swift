@@ -14,6 +14,7 @@ class AppsPageController: BaseListController {
     
     let activityIndictor: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .large)
+        aiv.color = .black
         aiv.startAnimating()
         aiv.hidesWhenStopped = true
         return aiv
@@ -71,7 +72,7 @@ class AppsPageController: BaseListController {
             guard let group = appGroup else {return}
             self.group3 = group
         }
-        self.dispatchGroup.enter()
+        self.dispatchGroup.enter() 
         Service.shared.fetchSoicalApp { socialApp, error in
             self.dispatchGroup.leave()
             //error if condication

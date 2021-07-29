@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE253EEC26B185FF00FA2104 /* BetterSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253EEB26B185FF00FA2104 /* BetterSnappingLayout.swift */; };
 		BE347FD926B01AB100102D2B /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE347FD826B01AB100102D2B /* SocialApp.swift */; };
+		BE347FDD26B0641500102D2B /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE347FDC26B0641500102D2B /* HorizontalSnappingController.swift */; };
 		BE38D019269ED4D0002ACFD2 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D018269ED4D0002ACFD2 /* UIView+Ext.swift */; };
 		BE38D01E269F17A1002ACFD2 /* AppsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D01D269F17A1002ACFD2 /* AppsPageController.swift */; };
 		BE38D020269F1AE9002ACFD2 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38D01F269F1AE9002ACFD2 /* BaseListController.swift */; };
@@ -36,7 +38,9 @@
 /* Begin PBXFileReference section */
 		517C403516A41C3A31EA1F5D /* Pods-AppStoreJSONAPIs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSONAPIs.release.xcconfig"; path = "Target Support Files/Pods-AppStoreJSONAPIs/Pods-AppStoreJSONAPIs.release.xcconfig"; sourceTree = "<group>"; };
 		622696DEC5F11A399561FD36 /* Pods_AppStoreJSONAPIs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreJSONAPIs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE253EEB26B185FF00FA2104 /* BetterSnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSnappingLayout.swift; sourceTree = "<group>"; };
 		BE347FD826B01AB100102D2B /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
+		BE347FDC26B0641500102D2B /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		BE38D018269ED4D0002ACFD2 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		BE38D01D269F17A1002ACFD2 /* AppsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageController.swift; sourceTree = "<group>"; };
 		BE38D01F269F1AE9002ACFD2 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				BE43ABC22694BE06005F0F43 /* BaseTabBarController.swift */,
 				BE38D01F269F1AE9002ACFD2 /* BaseListController.swift */,
 				BE43ABB22694BD69005F0F43 /* ViewController.swift */,
+				BE347FDC26B0641500102D2B /* HorizontalSnappingController.swift */,
 				BE77C66E269B257500A10854 /* Support */,
 			);
 			path = Controllers;
@@ -149,6 +154,7 @@
 			children = (
 				BE434F71269620C5008136B2 /* VerticalStackView.swift */,
 				BE38D018269ED4D0002ACFD2 /* UIView+Ext.swift */,
+				BE253EEB26B185FF00FA2104 /* BetterSnappingLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				BE38D025269F2FB3002ACFD2 /* AppsHorizontalController.swift in Sources */,
 				BE38D020269F1AE9002ACFD2 /* BaseListController.swift in Sources */,
 				BE38D023269F23AF002ACFD2 /* AppsGroupCell.swift in Sources */,
+				BE347FDD26B0641500102D2B /* HorizontalSnappingController.swift in Sources */,
 				BE434F6F26956797008136B2 /* CellResultCell.swift in Sources */,
 				BEF2EA7A26A9807E0078948D /* AppGroup.swift in Sources */,
 				BE6F476926982EEA004151E3 /* Service.swift in Sources */,
@@ -355,6 +362,7 @@
 				BE43ABB12694BD69005F0F43 /* SceneDelegate.swift in Sources */,
 				BE4D08DA26A14AE400B5DBF9 /* AppsPageHeader.swift in Sources */,
 				BE434F72269620C5008136B2 /* VerticalStackView.swift in Sources */,
+				BE253EEC26B185FF00FA2104 /* BetterSnappingLayout.swift in Sources */,
 				BE8F442426A02C2C009F9FC2 /* AppRowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

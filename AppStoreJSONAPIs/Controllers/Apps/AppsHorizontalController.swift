@@ -9,8 +9,11 @@ import UIKit
 
 class AppsHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout{
     
-    fileprivate let cellId = "cellId"
+    let cellId = "cellId"
     var appGroup: AppGroup?
+    
+    var appDetailHandler: ((FeedResult) -> ())?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -23,6 +26,12 @@ class AppsHorizontalController: HorizontalSnappingController, UICollectionViewDe
         return appGroup?.feed.results.count ?? 0
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let app = appGroup?.feed.results[indexPath.item] {
+            appDetailHandler?(app)
+        }
+        
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppRowCell
         let app = appGroup?.feed.results[indexPath.item]

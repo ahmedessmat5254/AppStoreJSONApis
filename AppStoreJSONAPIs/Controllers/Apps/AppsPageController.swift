@@ -50,7 +50,7 @@ class AppsPageController: BaseListController {
     var socialApps = [SocialApp]()
     
     func fetchData() {
-        
+        activityIndictor.startAnimating()
         self.dispatchGroup.enter()
         Service.shared.fetchGroups(urlString: "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json") { appGroup, error in
             self.dispatchGroup.leave()
@@ -106,6 +106,8 @@ class AppsPageController: BaseListController {
         return header
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         .init(width: view.frame.width, height: 300)
     }
@@ -120,6 +122,11 @@ class AppsPageController: BaseListController {
         cell.titelLabel.text = group.feed.title
         cell.horizontalController.appGroup = group
         cell.horizontalController.collectionView.reloadData()
+        cell.horizontalController.appDetailHandler = { [weak self] feedResult in
+            let contorller = AppDetailContorller()
+            contorller.navigationItem.title = feedResult.name
+            self?.navigationController?.pushViewController(contorller, animated: true)
+        }
         return  cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -8,20 +8,27 @@
 import UIKit
 
 class AppDetailsCell: UICollectionViewCell {
-    
+    var app: Result? {
+        didSet {
+            nameLabel.text = app?.trackName
+            priceButton.setTitle(app?.formattedPrice, for: .normal)
+            logoImageView.sd_setImage(with: URL(string: app?.artworkUrl60 ?? ""))
+            relaseNotesLabel.text = app?.releaseNotes
+            
+        }
+    }
     let logoImageView = UIImageView(conerRadius: 12)
     let nameLabel = UILabel(text: "APP NAME", font: UIFont.boldSystemFont(ofSize: 24), numberOfLines: 2)
     let priceButton = UIButton(title: "4.99$")
-    let whatsNewLabel = UILabel(text: "what's new", font: UIFont.boldSystemFont(ofSize: 20), numberOfLines: 0)
-    let relaseNotesLabel = UILabel(text: "relase notes", font: UIFont.systemFont(ofSize: 12))
+    let whatsNewLabel = UILabel(text: "what's new", font: UIFont.boldSystemFont(ofSize: 20), numberOfLines: 2)
+    let relaseNotesLabel = UILabel(text: "relase notes", font: UIFont.systemFont(ofSize: 12), numberOfLines: 0)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         logoImageView.backgroundColor = .red
-        logoImageView.constrainWidth(constant: 140)
+        logoImageView.constrainWidth(constant: 149)
         logoImageView.constrainHeight(constant: 140)
-        
         
         priceButton.constrainHeight(constant: 32)
         priceButton.constrainWidth(constant: 80)
@@ -42,6 +49,8 @@ class AppDetailsCell: UICollectionViewCell {
             whatsNewLabel,
             relaseNotesLabel
             ], spacing: 16)
+        
+        
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
     }

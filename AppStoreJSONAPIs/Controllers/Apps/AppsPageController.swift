@@ -50,7 +50,6 @@ class AppsPageController: BaseListController {
     var socialApps = [SocialApp]()
     
     func fetchData() {
-        activityIndictor.startAnimating()
         self.dispatchGroup.enter()
         Service.shared.fetchGroups(urlString: "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json") { appGroup, error in
             self.dispatchGroup.leave()
@@ -75,7 +74,6 @@ class AppsPageController: BaseListController {
         self.dispatchGroup.enter() 
         Service.shared.fetchSoicalApp { socialApp, error in
             self.dispatchGroup.leave()
-            //error if condication
             guard let app = socialApp else { return }
             self.socialApps = app
             print("Social Apps", self.socialApps)
@@ -125,6 +123,7 @@ class AppsPageController: BaseListController {
         cell.horizontalController.appDetailHandler = { [weak self] feedResult in
             let contorller = AppDetailContorller()
             contorller.navigationItem.title = feedResult.name
+            contorller.appId = feedResult.id
             self?.navigationController?.pushViewController(contorller, animated: true)
         }
         return  cell

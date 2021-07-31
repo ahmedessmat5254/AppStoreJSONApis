@@ -14,24 +14,6 @@ class Service  {
         let urlString = "https://itunes.apple.com/search?term=\(text)&entity=software"
         
         fetchGenericJSONData(urlStriing: urlString, complection: completion)
-        
-//        guard let url = URL(string: urlString) else {return}
-//
-//       let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            if let error = error {
-//                print("Faild to fetch apps:", error)
-//                completion([], nil)
-//            }
-//            guard let data = data else { return }
-//            do {
-//                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-//                completion(searchResult.results, nil)
-//            } catch let jsonError {
-//                print("Faild to decode json:", jsonError)
-//                completion([], jsonError)
-//            }
-//        }
-//        task.resume()
     }
     
     

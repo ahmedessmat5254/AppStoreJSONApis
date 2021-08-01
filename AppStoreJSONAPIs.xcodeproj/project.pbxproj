@@ -30,6 +30,10 @@
 		BE66AF1D26B5C06F00C8C7D1 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66AF1C26B5C06F00C8C7D1 /* PreviewCell.swift */; };
 		BE66AF1F26B5C86D00C8C7D1 /* PreviewScreenshotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66AF1E26B5C86D00C8C7D1 /* PreviewScreenshotController.swift */; };
 		BE6F476926982EEA004151E3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F476826982EEA004151E3 /* Service.swift */; };
+		BE70AA2726B6D10900280A8F /* ReviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE70AA2626B6D10900280A8F /* ReviewRowCell.swift */; };
+		BE70AA2926B6D28300280A8F /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE70AA2826B6D28300280A8F /* ReviewController.swift */; };
+		BE70AA2B26B6D43500280A8F /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE70AA2A26B6D43500280A8F /* ReviewCell.swift */; };
+		BE70AA2D26B6E3B400280A8F /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE70AA2C26B6E3B400280A8F /* Reviews.swift */; };
 		BE7A5A3B269761C300F71A78 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7A5A3A269761C300F71A78 /* SearchResult.swift */; };
 		BE86C6D726B2C05600100DE1 /* AppDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86C6D626B2C05600100DE1 /* AppDetailController.swift */; };
 		BE86C6DA26B2EB3B00100DE1 /* AppDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86C6D926B2EB3B00100DE1 /* AppDetailCell.swift */; };
@@ -67,6 +71,10 @@
 		BE66AF1C26B5C06F00C8C7D1 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		BE66AF1E26B5C86D00C8C7D1 /* PreviewScreenshotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotController.swift; sourceTree = "<group>"; };
 		BE6F476826982EEA004151E3 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BE70AA2626B6D10900280A8F /* ReviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowCell.swift; sourceTree = "<group>"; };
+		BE70AA2826B6D28300280A8F /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		BE70AA2A26B6D43500280A8F /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		BE70AA2C26B6E3B400280A8F /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		BE7A5A3A269761C300F71A78 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		BE86C6D626B2C05600100DE1 /* AppDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailController.swift; sourceTree = "<group>"; };
 		BE86C6D926B2EB3B00100DE1 /* AppDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailCell.swift; sourceTree = "<group>"; };
@@ -226,6 +234,7 @@
 				BE7A5A3A269761C300F71A78 /* SearchResult.swift */,
 				BEF2EA7926A9807E0078948D /* AppGroup.swift */,
 				BE347FD826B01AB100102D2B /* SocialApp.swift */,
+				BE70AA2C26B6E3B400280A8F /* Reviews.swift */,
 			);
 			path = "Model ";
 			sourceTree = "<group>";
@@ -235,6 +244,7 @@
 			children = (
 				BE86C6D626B2C05600100DE1 /* AppDetailController.swift */,
 				BE66AF1E26B5C86D00C8C7D1 /* PreviewScreenshotController.swift */,
+				BE70AA2826B6D28300280A8F /* ReviewController.swift */,
 			);
 			path = AppDetails;
 			sourceTree = "<group>";
@@ -244,6 +254,8 @@
 			children = (
 				BE86C6D926B2EB3B00100DE1 /* AppDetailCell.swift */,
 				BE66AF1C26B5C06F00C8C7D1 /* PreviewCell.swift */,
+				BE70AA2626B6D10900280A8F /* ReviewRowCell.swift */,
+				BE70AA2A26B6D43500280A8F /* ReviewCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -370,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE434F6C269520D6008136B2 /* SearchController.swift in Sources */,
+				BE70AA2B26B6D43500280A8F /* ReviewCell.swift in Sources */,
 				BE347FD926B01AB100102D2B /* SocialApp.swift in Sources */,
 				BE38D019269ED4D0002ACFD2 /* UIView+Ext.swift in Sources */,
 				BE43ABC32694BE06005F0F43 /* BaseTabBarController.swift in Sources */,
@@ -391,10 +404,13 @@
 				BE38D01E269F17A1002ACFD2 /* AppsPageController.swift in Sources */,
 				BE43ABB12694BD69005F0F43 /* SceneDelegate.swift in Sources */,
 				BE86C6DA26B2EB3B00100DE1 /* AppDetailCell.swift in Sources */,
+				BE70AA2D26B6E3B400280A8F /* Reviews.swift in Sources */,
 				BE4D08DA26A14AE400B5DBF9 /* AppsPageHeader.swift in Sources */,
 				BE66AF1D26B5C06F00C8C7D1 /* PreviewCell.swift in Sources */,
+				BE70AA2726B6D10900280A8F /* ReviewRowCell.swift in Sources */,
 				BE434F72269620C5008136B2 /* VerticalStackView.swift in Sources */,
 				BE253EEC26B185FF00FA2104 /* BetterSnappingLayout.swift in Sources */,
+				BE70AA2926B6D28300280A8F /* ReviewController.swift in Sources */,
 				BE8F442426A02C2C009F9FC2 /* AppRowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

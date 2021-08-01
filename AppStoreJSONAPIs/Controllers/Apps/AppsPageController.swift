@@ -47,6 +47,7 @@ class AppsPageController: BaseListController {
     var socialApps = [SocialApp]()
     
     func fetchData() {
+        activityIndictor.startAnimating()
         self.dispatchGroup.enter()
         Service.shared.fetchGroups(urlString: "https://rss.itunes.apple.com/api/v1/eg/ios-apps/top-free/all/50/explicit.json") { appGroup, error in
             self.dispatchGroup.leave()
@@ -69,6 +70,15 @@ class AppsPageController: BaseListController {
             self.group3 = group
         }
     
+        
+        self.dispatchGroup.enter()
+        Service.shared.fetchSoicalApp { socialApp, error in
+            self.dispatchGroup.leave()
+            guard let app = socialApp else { return }
+            self.socialApps = app
+            print("Social Apps", self.socialApps)
+        }
+        
         dispatchGroup.notify(queue: .main){
             self.activityIndictor.stopAnimating()
             if let group = self.group1 {
@@ -83,13 +93,6 @@ class AppsPageController: BaseListController {
             self.collectionView.reloadData()
         }
         
-        self.dispatchGroup.enter()
-        Service.shared.fetchSoicalApp { socialApp, error in
-            self.dispatchGroup.leave()
-            guard let app = socialApp else { return }
-            self.socialApps = app
-            print("Social Apps", self.socialApps)
-        }
    
         
     }

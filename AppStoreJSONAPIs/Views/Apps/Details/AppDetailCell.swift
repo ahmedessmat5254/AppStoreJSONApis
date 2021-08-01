@@ -27,7 +27,7 @@ class AppDetailsCell: UICollectionViewCell {
         super.init(frame: frame)
         
         logoImageView.backgroundColor = .red
-        logoImageView.constrainWidth(constant: 149)
+        logoImageView.constrainWidth(constant: 140)
         logoImageView.constrainHeight(constant: 140)
         
         priceButton.constrainHeight(constant: 32)

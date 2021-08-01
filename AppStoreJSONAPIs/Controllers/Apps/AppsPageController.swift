@@ -23,18 +23,15 @@ class AppsPageController: BaseListController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        view.addSubview(activityIndictor)
+        activityIndictor.fillSuperview()
+        
         collectionView.backgroundColor = .white
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
         view.addSubview(activityIndictor)
-        activityIndictor.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndictor.topAnchor.constraint(equalTo: view.topAnchor),
-            activityIndictor.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            activityIndictor.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            activityIndictor.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
+        activityIndictor.fillSuperview()
         
         fetchData()
     }
@@ -71,13 +68,6 @@ class AppsPageController: BaseListController {
             guard let group = appGroup else {return}
             self.group3 = group
         }
-        self.dispatchGroup.enter() 
-        Service.shared.fetchSoicalApp { socialApp, error in
-            self.dispatchGroup.leave()
-            guard let app = socialApp else { return }
-            self.socialApps = app
-            print("Social Apps", self.socialApps)
-        }
     
         dispatchGroup.notify(queue: .main){
             self.activityIndictor.stopAnimating()
@@ -93,7 +83,14 @@ class AppsPageController: BaseListController {
             self.collectionView.reloadData()
         }
         
-        
+        self.dispatchGroup.enter()
+        Service.shared.fetchSoicalApp { socialApp, error in
+            self.dispatchGroup.leave()
+            guard let app = socialApp else { return }
+            self.socialApps = app
+            print("Social Apps", self.socialApps)
+        }
+   
         
     }
 

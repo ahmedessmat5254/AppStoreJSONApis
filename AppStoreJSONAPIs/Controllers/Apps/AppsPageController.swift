@@ -29,6 +29,7 @@ class AppsPageController: BaseListController {
         collectionView.backgroundColor = .white
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView.scrollIndicatorInsets = .init(top: 0, left: 0, bottom: -100, right: 0)
         
         view.addSubview(activityIndictor)
         activityIndictor.fillSuperview()

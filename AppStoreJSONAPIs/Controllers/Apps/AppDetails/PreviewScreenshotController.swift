@@ -21,6 +21,7 @@ class PreviewScreenshotController: HorizontalSnappingController, UICollectionVie
         collectionView.backgroundColor = .white
         collectionView.register(ScreenShotCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.scrollIndicatorInsets = .init(top: 0, left: 0, bottom: -100, right: 0)
     }
     
     class ScreenShotCell: UICollectionViewCell {

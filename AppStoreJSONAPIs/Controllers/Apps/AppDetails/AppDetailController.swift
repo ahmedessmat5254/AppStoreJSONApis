@@ -26,6 +26,7 @@ class AppDetailContorller: BaseListController {
                     print("Faild to reload url. Please Checkc the url",error)
                     return
                 }
+                reviews?.feed.entry.forEach({ print($0.rating)})
                 self.review = reviews
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()

@@ -21,6 +21,7 @@ class ReviewController: HorizontalSnappingController, UICollectionViewDelegateFl
         collectionView.backgroundColor = .white
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: reviewId)
+        collectionView.scrollIndicatorInsets = .init(top: 0, left: 0, bottom: -100, right: 0)
         
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,10 +30,18 @@ class ReviewController: HorizontalSnappingController, UICollectionViewDelegateFl
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewId, for: indexPath) as! ReviewCell
-        let reviews = review?.feed.entry[indexPath.row]
-        cell.authorLabel.text = reviews?.author.name.label
-        cell.bodyLabel.text = reviews?.content.label
-        cell.titleLabel.text = reviews?.title.label
+        let entry = review?.feed.entry[indexPath.row]
+        cell.authorLabel.text = entry?.author.name.label
+        cell.bodyLabel.text = entry?.content.label
+        cell.titleLabel.text = entry?.title.label
+        
+        for (index, view) in
+            cell.starStackView.arrangedSubviews.enumerated() {
+            if let ratingInt = Int(entry!.rating.label) {
+                view.alpha = index >= ratingInt ? 0 : 1
+            }
+            
+        }
         return cell
     }
     

@@ -9,30 +9,15 @@ import UIKit
 
 class AppDetailContorller: BaseListController {
     
-    var appId: String! {
-        didSet {
-          let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
-            Service.shared.fetchGenericJSONData(urlStriing: urlString) {(result: SearchResult?, error) in
-                let app = result?.results.first
-                self.app = app
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-            
-            let reviewUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
-            Service.shared.fetchGenericJSONData(urlStriing: reviewUrl) { (reviews: Reviews?, error) in
-                if let error = error {
-                    print("Faild to reload url. Please Checkc the url",error)
-                    return
-                }
-                reviews?.feed.entry.forEach({ print($0.rating)})
-                self.review = reviews
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-        }
+    fileprivate let appId: String
+    
+    init(appId: String) {
+        self.appId = appId
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var app: Result?
@@ -41,6 +26,7 @@ class AppDetailContorller: BaseListController {
     let detailCellId = "detailCellId"
     let previewId = "cellId"
     let reviewCellId = "reviewid"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -48,8 +34,33 @@ class AppDetailContorller: BaseListController {
         collectionView.register(AppDetailsCell.self, forCellWithReuseIdentifier: detailCellId)
         collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewId)
         collectionView.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewCellId)
+        
+        fetchData()
     }
     
+    func fetchData() {
+        let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
+          Service.shared.fetchGenericJSONData(urlStriing: urlString) {(result: SearchResult?, error) in
+              let app = result?.results.first
+              self.app = app
+              DispatchQueue.main.async {
+                  self.collectionView.reloadData()
+              }
+          }
+          
+          let reviewUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
+          Service.shared.fetchGenericJSONData(urlStriing: reviewUrl) { (reviews: Reviews?, error) in
+              if let error = error {
+                  print("Faild to reload url. Please Checkc the url",error)
+                  return
+              }
+              reviews?.feed.entry.forEach({ print($0.rating)})
+              self.review = reviews
+              DispatchQueue.main.async {
+                  self.collectionView.reloadData()
+              }
+          }
+    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3

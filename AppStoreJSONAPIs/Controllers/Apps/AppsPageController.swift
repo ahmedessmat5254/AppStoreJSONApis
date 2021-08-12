@@ -122,9 +122,8 @@ class AppsPageController: BaseListController {
         cell.horizontalController.appGroup = group
         cell.horizontalController.collectionView.reloadData()
         cell.horizontalController.appDetailHandler = { [weak self] feedResult in
-            let contorller = AppDetailContorller()
+            let contorller = AppDetailContorller(appId: feedResult.id)
             contorller.navigationItem.title = feedResult.name
-            contorller.appId = feedResult.id
             self?.navigationController?.pushViewController(contorller, animated: true)
         }
         return  cell

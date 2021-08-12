@@ -81,6 +81,12 @@ class SearchController: BaseListController, UISearchBarDelegate {
         }
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let appId = appResults[indexPath.row].trackId
+        let detailView = AppDetailContorller(appId: String(appId))
+        navigationController?.pushViewController(detailView, animated: true)
+        
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width:view.frame.width , height: 350)
     }
